@@ -1,0 +1,24 @@
+language: python
+sudo: false
+
+python:
+- 2.6
+- 2.7
+- 3.2
+- 3.3
+- 3.4
+- 3.5
+- pypy
+- pypy3
+
+env:
+  matrix:
+    - TOXENV=v25x,v241,v230,v224,v210,v200
+    - TOXENV=pytest
+
+install:
+- pip install tox
+
+script:
+- if [[ "$TRAVIS_PYTHON_VERSION" == "3.2" ]]; then pip install 'virtualenv<14' ; fi
+- tox
